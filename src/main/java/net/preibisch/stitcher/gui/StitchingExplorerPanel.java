@@ -352,7 +352,7 @@ public class StitchingExplorerPanel<AS extends AbstractSpimData< ? >, X extends 
 			}
 
 			if (doGlobalOpt)
-				new Thread( new ExecuteGlobalOpt( this, savedFilteringAndGrouping ) ).start();
+				new Thread( new ExecuteGlobalOpt( ( ExplorerWindow ) this, savedFilteringAndGrouping ) ).start();
 
 			// discard the temp. SpimDataFilteringAndGrouping
 			// if we discard it right now, but want to do global opt (which runs asynchronously)
@@ -1141,7 +1141,7 @@ public class StitchingExplorerPanel<AS extends AbstractSpimData< ? >, X extends 
 	protected void addDemoLink()
 	{
 		table.addKeyListener( this.demoLinkOverlayPopup );
-		this.demoLinkOverlayPopup.setExplorerWindow( this );
+		this.demoLinkOverlayPopup.setExplorerWindow( ( ExplorerWindow ) this );
 	}
 
 	private boolean enableFlyThrough = false;
