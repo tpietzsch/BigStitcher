@@ -122,6 +122,8 @@ public class SeparableMovingSum
 			final NumericType< ? > targetType = out.get();
 			if ( sourceType instanceof UnsignedLongType && targetType instanceof UnsignedLongType )
 				return new SumUnsignedLongType( windowSize, Cast.unchecked( in ), Cast.unchecked( out ), d, lineLength );
+			else if ( sourceType instanceof DoubleType && targetType instanceof DoubleType )
+				return new SumDoubleType( windowSize, Cast.unchecked( in ), Cast.unchecked( out ), d, lineLength );
 			throw new IllegalArgumentException( "Moving Sum is not supported for the given source and target type," +
 					" source: " + sourceType.getClass().getSimpleName() +
 					" target: " + targetType.getClass().getSimpleName() );
