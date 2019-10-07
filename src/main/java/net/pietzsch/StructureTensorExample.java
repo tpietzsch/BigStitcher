@@ -1,32 +1,27 @@
 package net.pietzsch;
 
-import bdv.util.AxisOrder;
 import bdv.util.Bdv;
 import bdv.util.BdvFunctions;
 import ij.IJ;
 import ij.ImagePlus;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import net.imglib2.Dimensions;
-import net.imglib2.FinalInterval;
-import net.imglib2.RandomAccessible;
+import net.imglib2.Point;
 import net.imglib2.RandomAccessibleInterval;
-import net.imglib2.algorithm.gradient.HessianMatrix;
-import net.imglib2.algorithm.gradient.PartialDerivative;
-import net.imglib2.converter.Converters;
-import net.imglib2.converter.RealTypeConverters;
-import net.imglib2.exception.IncompatibleTypeException;
+import net.imglib2.algorithm.linalg.eigen.TensorEigenValues;
+import net.imglib2.algorithm.localextrema.LocalExtrema;
 import net.imglib2.img.Img;
+import net.imglib2.img.array.ArrayImg;
 import net.imglib2.img.array.ArrayImgFactory;
+import net.imglib2.img.array.ArrayRandomAccess;
 import net.imglib2.img.display.imagej.ImageJFunctions;
 import net.imglib2.loops.LoopBuilder;
 import net.imglib2.outofbounds.OutOfBoundsBorderFactory;
-import net.imglib2.outofbounds.OutOfBoundsFactory;
 import net.imglib2.type.NativeType;
-import net.imglib2.type.numeric.integer.LongType;
 import net.imglib2.type.numeric.integer.UnsignedByteType;
-import net.imglib2.type.numeric.integer.UnsignedLongType;
 import net.imglib2.type.numeric.real.DoubleType;
 import net.imglib2.util.Intervals;
 import net.imglib2.util.Util;
@@ -82,6 +77,23 @@ public class StructureTensorExample
 		BdvFunctions.show( structureSum, "structureSum", Bdv.options().addTo( bdv ) );
 
 //		--> now calculate eigenvalues
+
+		ArrayImgFactory< DoubleType > imgFactory = new ArrayImgFactory<>( new DoubleType() );
+		final RandomAccessibleInterval< DoubleType > eigenvalues = TensorEigenValues.calculateEigenValuesSymmetric(
+				structureSum,
+				TensorEigenValues.createAppropriateResultImg( structureSum, imgFactory ) );
+
+		BdvFunctions.show( eigenvalues, "eigenvalues", Bdv.options().addTo( bdv ) );
+
+		final List< Point > localExtrema = LocalExtrema.findLocalExtrema( Views.hyperSlice( eigenvalues, n, n - 1 ), new LocalExtrema.MaximumCheck<>( new DoubleType( 1000 ) ) );
+		final ArrayImg< UnsignedByteType, ? > maxima = new ArrayImgFactory<>( new UnsignedByteType() ).create( img );
+		final ArrayRandomAccess< UnsignedByteType > maximaRA = maxima.randomAccess();
+		localExtrema.forEach( point -> {
+			maximaRA.setPosition( point );
+			maximaRA.get().set( 255 );
+		} );
+
+		BdvFunctions.show( maxima, "maxima", Bdv.options().addTo( bdv ) );
 	}
 
 	private static < T extends NativeType< T > > RandomAccessibleInterval< T > copyToArrayImg( final RandomAccessibleInterval< T > img )
