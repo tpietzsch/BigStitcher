@@ -23,7 +23,7 @@ import net.imglib2.type.numeric.integer.UnsignedByteType;
 import net.imglib2.type.numeric.integer.UnsignedLongType;
 import net.imglib2.util.Util;
 import net.imglib2.view.Views;
-import net.pietzsch.movingsum.SeparableMovingSum;
+import net.pietzsch.imglib.movingsum.SeparableMovingSum;
 
 // Compare results of SeparableMovingSum and neighborhood-based reference implementation
 public class BlockSumReference

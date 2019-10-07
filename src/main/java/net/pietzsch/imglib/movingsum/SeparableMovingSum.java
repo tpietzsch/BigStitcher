@@ -1,4 +1,4 @@
-package net.pietzsch.movingsum;
+package net.pietzsch.imglib.movingsum;
 
 import java.util.List;
 import java.util.stream.Collectors;
