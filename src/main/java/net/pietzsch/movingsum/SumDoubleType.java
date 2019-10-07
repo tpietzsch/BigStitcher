@@ -32,7 +32,7 @@
  * #L%
  */
 
-package net.pietzsch;
+package net.pietzsch.movingsum;
 
 import net.imglib2.RandomAccess;
 import net.imglib2.algorithm.convolution.LineConvolverFactory;

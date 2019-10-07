@@ -1,17 +1,11 @@
-package net.pietzsch;
+package net.pietzsch.old;
 
 import bdv.util.Bdv;
 import bdv.util.BdvFunctions;
 import ij.IJ;
 import ij.ImagePlus;
 import java.util.Arrays;
-import net.imglib2.Cursor;
-import net.imglib2.RandomAccess;
-import net.imglib2.RandomAccessible;
 import net.imglib2.RandomAccessibleInterval;
-import net.imglib2.algorithm.neighborhood.CenteredRectangleShape;
-import net.imglib2.algorithm.neighborhood.Neighborhood;
-import net.imglib2.converter.Converter;
 import net.imglib2.converter.Converters;
 import net.imglib2.converter.RealTypeConverters;
 import net.imglib2.img.Img;
@@ -19,13 +13,13 @@ import net.imglib2.img.array.ArrayImgFactory;
 import net.imglib2.img.display.imagej.ImageJFunctions;
 import net.imglib2.loops.LoopBuilder;
 import net.imglib2.type.NativeType;
-import net.imglib2.type.numeric.RealType;
 import net.imglib2.type.numeric.integer.UnsignedByteType;
 import net.imglib2.type.numeric.integer.UnsignedLongType;
 import net.imglib2.type.numeric.integer.UnsignedShortType;
 import net.imglib2.util.Intervals;
 import net.imglib2.util.Util;
 import net.imglib2.view.Views;
+import net.pietzsch.movingsum.SeparableMovingSum;
 
 // Compare results of SeparableMovingSum and neighborhood-based reference implementation
 public class MeanAndVariance

@@ -51,7 +51,7 @@ import net.imglib2.view.IntervalView;
 import net.imglib2.view.Views;
 
 /**
- *
+ * TODO: REVISE JAVADOC
  * Compute entries of n-dimensional structure tensor (second-moment matrix).
  *
  * @author Philipp Hanslovsky

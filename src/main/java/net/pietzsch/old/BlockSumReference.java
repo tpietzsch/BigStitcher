@@ -1,4 +1,4 @@
-package net.pietzsch;
+package net.pietzsch.old;
 
 import bdv.util.Bdv;
 import bdv.util.BdvFunctions;
@@ -23,7 +23,7 @@ import net.imglib2.type.numeric.integer.UnsignedByteType;
 import net.imglib2.type.numeric.integer.UnsignedLongType;
 import net.imglib2.util.Util;
 import net.imglib2.view.Views;
-
+import net.pietzsch.movingsum.SeparableMovingSum;
 
 // Compare results of SeparableMovingSum and neighborhood-based reference implementation
 public class BlockSumReference

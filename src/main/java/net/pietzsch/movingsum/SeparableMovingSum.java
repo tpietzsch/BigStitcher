@@ -1,4 +1,4 @@
-package net.pietzsch;
+package net.pietzsch.movingsum;
 
 import java.util.List;
 import java.util.stream.Collectors;

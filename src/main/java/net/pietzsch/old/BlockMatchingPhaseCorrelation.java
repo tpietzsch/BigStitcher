@@ -1,4 +1,4 @@
-package net.pietzsch;
+package net.pietzsch.old;
 
 import bdv.util.Bdv;
 import bdv.util.BdvFunctions;
@@ -19,7 +19,7 @@ import net.imglib2.type.numeric.real.FloatType;
 import net.imglib2.util.Intervals;
 import net.imglib2.view.Views;
 
-public class BlockMatching
+public class BlockMatchingPhaseCorrelation
 {
 	public static void main( String[] args )
 	{
