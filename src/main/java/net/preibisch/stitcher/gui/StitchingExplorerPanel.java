@@ -1068,12 +1068,6 @@ public class StitchingExplorerPanel<AS extends AbstractSpimData< ? > >
 			cs.get( i ).setColor( new ARGBType( ColorStream.get( i + j ) ) );
 	}
 
-	public static void whiteSources(final List< ConverterSetup > cs)
-	{
-		for ( int i = 0; i < cs.size(); ++i )
-			cs.get( i ).setColor( new ARGBType( ARGBType.rgba( 255, 255, 255, 0 ) ) );
-	}
-
 	public static void setVisibleSources(final VisibilityAndGrouping vag, final boolean[] active)
 	{
 		for ( int i = 0; i < active.length; ++i )
